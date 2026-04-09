@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoofGenius AI | AI Supplement, AI Estimator & Instant Quote</title>
+  <meta
+    name="description"
+    content="RoofGenius helps roofing contractors recover missed revenue, estimate faster, and close more jobs with AI Supplement, AI Estimator, and Instant Quote."
+  >
+  <style>
+    :root {
+      --rg-red: #dc2626;
+      --rg-red-dark: #b91c1c;
+      --rg-orange: #f97316;
+      --rg-ink: #0f172a;
+      --rg-slate: #1e293b;
+      --rg-muted: #64748b;
+      --rg-bg: #f8fafc;
+      --rg-white: #ffffff;
+      --rg-border: #e2e8f0;
+      --rg-success: #16a34a;
+      --shadow-soft: 0 12px 32px rgba(15, 23, 42, 0.08);
+      --shadow-strong: 0 24px 48px rgba(2, 6, 23, 0.2);
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(180deg, #fff 0%, #f8fafc 45%, #eef2ff 100%);
+      color: var(--rg-ink);
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 2.25rem, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .top-banner {
+      background: linear-gradient(90deg, var(--rg-red), var(--rg-orange));
+      color: var(--rg-white);
+      font-weight: 600;
+      font-size: 0.92rem;
+      text-align: center;
+      padding: 0.6rem 1rem;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.95);
+    }
+
+    .header-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .brand img {
+      width: 152px;
+      max-width: 40vw;
+      height: auto;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.05rem;
+      font-size: 0.93rem;
+      color: #334155;
+    }
+
+    .pill-cta,
+    .pill-ghost {
+      border-radius: 999px;
+      padding: 0.62rem 1.05rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: 180ms ease;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .pill-cta {
+      color: var(--rg-white);
+      background: linear-gradient(90deg, var(--rg-red), var(--rg-orange));
+      box-shadow: 0 8px 22px rgba(220, 38, 38, 0.28);
+    }
+
+    .pill-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(220, 38, 38, 0.35);
+    }
+
+    .pill-ghost {
+      border: 1px solid var(--rg-border);
+      color: var(--rg-ink);
+      background: var(--rg-white);
+    }
+
+    .hero {
+      padding: 5.25rem 0 3.4rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: start;
+      gap: 2rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      border: 1px solid #fecaca;
+      color: var(--rg-red-dark);
+      font-weight: 700;
+      font-size: 0.8rem;
+      border-radius: 999px;
+      background: #fff1f2;
+      padding: 0.33rem 0.7rem;
+      margin-bottom: 0.9rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4.2vw, 3.5rem);
+      line-height: 1.1;
+      margin: 0 0 1rem;
+      letter-spacing: -0.035em;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 66ch;
+      color: #334155;
+      font-size: 1.04rem;
+    }
+
+    .hero-cta-group {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 0.72rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.35rem;
+    }
+
+    .stat-pill {
+      background: var(--rg-white);
+      border: 1px solid var(--rg-border);
+      border-radius: 999px;
+      padding: 0.42rem 0.72rem;
+      font-size: 0.84rem;
+      color: #334155;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top right, #fef2f2 0%, #fff 48%);
+      border: 1px solid #fee2e2;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 1.15rem 1.15rem 1.1rem;
+    }
+
+    .hero-card h3 {
+      margin: 0 0 0.6rem;
+      font-size: 1.1rem;
+    }
+
+    .hero-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.58rem;
+      color: #334155;
+      font-size: 0.95rem;
+    }
+
+    .hero-card li::before {
+      content: "✓";
+      color: var(--rg-success);
+      margin-right: 0.5rem;
+      font-weight: 800;
+    }
+
+    .section {
+      padding: 1.5rem 0 3.7rem;
+    }
+
+    .section h2 {
+      margin: 0;
+      letter-spacing: -0.025em;
+      font-size: clamp(1.7rem, 3vw, 2.35rem);
+      line-height: 1.15;
+    }
+
+    .section-intro {
+      margin: 0.72rem 0 1.65rem;
+      color: #475569;
+      max-width: 65ch;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .product-card {
+      background: var(--rg-white);
+      border: 1px solid var(--rg-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .product-top {
+      padding: 1.15rem;
+      border-bottom: 1px solid var(--rg-border);
+    }
+
+    .product-badge {
+      display: inline-flex;
+      border-radius: 999px;
+      background: #fff7ed;
+      color: #c2410c;
+      border: 1px solid #fed7aa;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.23rem 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-title {
+      margin: 0;
+      font-size: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .product-copy {
+      margin: 0.55rem 0 0;
+      color: #475569;
+      font-size: 0.95rem;
+    }
+
+    .product-body {
+      padding: 0.95rem 1.15rem 1.18rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+      height: 100%;
+    }
+
+    .checklist {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.5rem;
+      color: #1e293b;
+      font-size: 0.9rem;
+    }
+
+    .checklist li {
+      display: flex;
+      gap: 0.5rem;
+      align-items: start;
+    }
+
+    .checklist span {
+      color: var(--rg-success);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-top: 0.1rem;
+    }
+
+    .video-shell {
+      border: 2px dashed #cbd5e1;
+      border-radius: var(--radius-md);
+      background: linear-gradient(180deg, #f8fafc, #fff);
+      min-height: 210px;
+      padding: 0.95rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      color: #475569;
+      gap: 0.4rem;
+    }
+
+    .video-shell strong {
+      color: #0f172a;
+      font-size: 1rem;
+    }
+
+    .video-shell small {
+      color: #64748b;
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .step-card {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--rg-border);
+      background: var(--rg-white);
+      padding: 1rem 0.95rem;
+    }
+
+    .step-number {
+      width: 1.9rem;
+      height: 1.9rem;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(180deg, var(--rg-red), var(--rg-orange));
+      font-size: 0.85rem;
+      font-weight: 800;
+      margin-bottom: 0.58rem;
+    }
+
+    .step-card h4 {
+      margin: 0 0 0.35rem;
+      font-size: 0.97rem;
+    }
+
+    .step-card p {
+      margin: 0;
+      color: #475569;
+      font-size: 0.87rem;
+    }
+
+    .tavus-wrap {
+      margin-top: 1.1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .tavus-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid #fee2e2;
+      background: linear-gradient(180deg, #ffffff, #fff7ed);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .tavus-card h3 {
+      margin: 0;
+      font-size: 1.35rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .tavus-card p {
+      color: #334155;
+      margin: 0.7rem 0 1rem;
+    }
+
+    .benefit-line {
+      border-left: 3px solid var(--rg-red);
+      padding-left: 0.7rem;
+      color: #475569;
+      margin-bottom: 0.9rem;
+      font-size: 0.93rem;
+    }
+
+    .embed-shell {
+      border-radius: var(--radius-lg);
+      border: 2px dashed #cbd5e1;
+      background: #fff;
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      text-align: center;
+      color: #475569;
+    }
+
+    .embed-shell strong {
+      display: block;
+      font-size: 1.06rem;
+      color: var(--rg-ink);
+      margin-bottom: 0.42rem;
+    }
+
+    .demo-form-wrap {
+      margin-top: 1.1rem;
+      background: var(--rg-white);
+      border: 1px solid var(--rg-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 1.2rem;
+    }
+
+    .demo-form-wrap h3 {
+      margin: 0 0 0.22rem;
+      letter-spacing: -0.012em;
+    }
+
+    .demo-form-wrap p {
+      margin: 0 0 0.9rem;
+      color: #475569;
+      font-size: 0.92rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.72rem;
+    }
+
+    .field,
+    .full-field {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      border-radius: 11px;
+      padding: 0.7rem 0.78rem;
+      font: inherit;
+      font-size: 0.92rem;
+      background: #fff;
+    }
+
+    .field:focus,
+    .full-field:focus {
+      outline: 2px solid #fca5a5;
+      border-color: #f87171;
+    }
+
+    .full-field {
+      margin-top: 0.72rem;
+      resize: vertical;
+      min-height: 95px;
+    }
+
+    .form-footer {
+      margin-top: 0.83rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.62rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .small-note {
+      color: #64748b;
+      font-size: 0.8rem;
+    }
+
+    .rep-card {
+      margin-top: 0.75rem;
+      border: 1px solid #fde68a;
+      background: #fffbeb;
+      border-radius: 12px;
+      padding: 0.73rem 0.82rem;
+      font-size: 0.87rem;
+      color: #78350f;
+    }
+
+    .footer {
+      margin-top: 3rem;
+      padding: 1.25rem 0 2.2rem;
+      border-top: 1px solid var(--rg-border);
+      color: #475569;
+      font-size: 0.86rem;
+    }
+
+    .footer strong {
+      color: #1e293b;
+    }
+
+    @media (max-width: 1050px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .header-wrap {
+        flex-wrap: wrap;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .product-grid,
+      .tavus-wrap,
+      .grid-2,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 4.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-banner">
+    4.9/5 from roofing pros • Recover missed line items in ~60 seconds • No percentage cuts
+  </div>
+
+  <header class="site-header">
+    <div class="container header-wrap">
+      <a class="brand" href="#top" aria-label="RoofGenius home">
+        <img src="https://roofgeniusai.com/logo.png" alt="RoofGenius logo">
+      </a>
+
+      <nav class="nav-links">
+        <a href="#products">Products</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#tavus-demo">Book Demo</a>
+        <a
+          class="pill-cta track-link"
+          data-track-link="true"
+          href="https://calendly.com/roofgenius/demo"
+        >
+          Schedule Demo
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">AI-Powered Roofing Growth Platform</span>
+          <h1>
+            Stop Leaving Money on the Table with
+            <span style="color: var(--rg-red);">AI Supplement</span>,
+            <span style="color: var(--rg-orange);">AI Estimator</span>, and
+            <span style="color: var(--rg-red);">Instant Quote</span>.
+          </h1>
+          <p>
+            RoofGenius helps roofing teams recover missed claim revenue, build accurate estimates faster,
+            and send close-ready quotes in minutes. Upload files, let AI do the heavy lifting,
+            and move every deal forward with confidence.
+          </p>
+          <div class="hero-cta-group">
+            <a
+              class="pill-cta track-link"
+              data-track-link="true"
+              href="https://calendly.com/roofgenius/demo"
+            >
+              Book a Live Demo
+            </a>
+            <a
+              class="pill-ghost track-link"
+              data-track-link="true"
+              href="https://roofgenius.ai/aisupplements-pricing"
+            >
+              See Pricing
+            </a>
+          </div>
+          <div class="stat-list">
+            <span class="stat-pill">$2M+ recovered</span>
+            <span class="stat-pill">500+ contractors</span>
+            <span class="stat-pill">94% success rate</span>
+            <span class="stat-pill">60-second avg. audit time</span>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Why contractors choose RoofGenius">
+          <h3>What top-performing teams use RoofGenius for</h3>
+          <ul>
+            <li>Find missed line items and generate carrier-ready supplements with AI.</li>
+            <li>Automate estimating workflows without waiting on manual reports.</li>
+            <li>Send high-converting proposals with digital-friendly quote experiences.</li>
+            <li>Use one system instead of juggling separate supplement, estimating, and quote tools.</li>
+          </ul>
+          <div class="rep-card">
+            Assigned rep:
+            <strong data-rep-name>RoofGenius Team</strong>
+            <span data-rep-contact style="display: none;"> • <span data-rep-email></span> • <span data-rep-phone></span></span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="products" class="section">
+      <div class="container">
+        <h2>Three Core Products Built for Revenue Growth</h2>
+        <p class="section-intro">
+          This page is structured for sales conversion: clear value proposition, proof-driven feature blocks,
+          product demos, and fast-booking CTAs. Video slots are intentionally left as upload shells.
+        </p>
+
+        <div class="product-grid">
+          <article class="product-card">
+            <div class="product-top">
+              <span class="product-badge">Product 01</span>
+              <h3 class="product-title">AI Supplement</h3>
+              <p class="product-copy">
+                Upload your estimate and damage photos, detect missed items fast, and generate adjuster-ready output.
+              </p>
+            </div>
+            <div class="product-body">
+              <ul class="checklist">
+                <li><span>✓</span> Audit Xactimate PDFs in about 60 seconds.</li>
+                <li><span>✓</span> Surface missing labor, materials, overhead, and code-supported items.</li>
+                <li><span>✓</span> Generate professional supplement letters with citations.</li>
+              </ul>
+              <div class="video-shell" id="video-ai-supplement">
+                <strong>Video Placeholder: AI Supplement Demo</strong>
+                <div>Drop in final video embed/file for this product.</div>
+                <small>
+                  Shell prepared for future upload (YouTube/Vimeo/custom player).<br>
+                  Suggested length: 45-90 seconds.
+                </small>
+              </div>
+              <a
+                class="pill-cta track-link"
+                data-track-link="true"
+                href="https://calendly.com/roofgenius/demo"
+              >
+                See AI Supplement Live
+              </a>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-top">
+              <span class="product-badge">Product 02</span>
+              <h3 class="product-title">AI Estimator</h3>
+              <p class="product-copy">
+                Build faster, smarter estimates with AI-assisted measurements, line-item logic, and consistent outputs.
+              </p>
+            </div>
+            <div class="product-body">
+              <ul class="checklist">
+                <li><span>✓</span> Move from manual estimate work to automated workflows.</li>
+                <li><span>✓</span> Align output with insurance and retail estimating needs.</li>
+                <li><span>✓</span> Improve speed-to-quote so your sales team can bid faster.</li>
+              </ul>
+              <div class="video-shell" id="video-ai-estimator">
+                <strong>Video Placeholder: AI Estimator Demo</strong>
+                <div>Drop in final video embed/file for this product.</div>
+                <small>
+                  Shell prepared for future upload (YouTube/Vimeo/custom player).<br>
+                  Suggested length: 60-120 seconds.
+                </small>
+              </div>
+              <a
+                class="pill-cta track-link"
+                data-track-link="true"
+                href="https://calendly.com/roofgenius/demo"
+              >
+                See AI Estimator Live
+              </a>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-top">
+              <span class="product-badge">Product 03</span>
+              <h3 class="product-title">Instant Quote</h3>
+              <p class="product-copy">
+                Create customer-ready quote experiences quickly so teams can close more jobs with less friction.
+              </p>
+            </div>
+            <div class="product-body">
+              <ul class="checklist">
+                <li><span>✓</span> Build polished, presentation-ready quotes in minutes.</li>
+                <li><span>✓</span> Guide buyers with clear pricing options and next steps.</li>
+                <li><span>✓</span> Speed up decision-making with a modern, conversion-first quoting flow.</li>
+              </ul>
+              <div class="video-shell" id="video-instant-quote">
+                <strong>Video Placeholder: Instant Quote Demo</strong>
+                <div>Drop in final video embed/file for this product.</div>
+                <small>
+                  Shell prepared for future upload (YouTube/Vimeo/custom player).<br>
+                  Suggested length: 45-90 seconds.
+                </small>
+              </div>
+              <a
+                class="pill-cta track-link"
+                data-track-link="true"
+                href="https://calendly.com/roofgenius/demo"
+              >
+                See Instant Quote Live
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="section">
+      <div class="container">
+        <h2>How RoofGenius Turns Inputs into Revenue</h2>
+        <p class="section-intro">
+          Adapted from the current RoofGenius process: upload, AI analysis, findings review, and carrier-ready output.
+        </p>
+
+        <div class="steps">
+          <article class="step-card">
+            <div class="step-number">1</div>
+            <h4>Upload Files</h4>
+            <p>Submit estimate PDFs, photos, and optional measurements from your current workflow.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-number">2</div>
+            <h4>AI Analysis</h4>
+            <p>RoofGenius scans line items and context to identify opportunities and produce clear findings.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-number">3</div>
+            <h4>Review & Refine</h4>
+            <p>Team members review recommendations, confidence context, and tailor output where needed.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-number">4</div>
+            <h4>Send & Close</h4>
+            <p>Deliver polished supplements and quotes that help recover value and accelerate deal velocity.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="tavus-demo" class="section">
+      <div class="container">
+        <h2>AI-Assisted Demo Booking with Tavus</h2>
+        <p class="section-intro">
+          Tavus can qualify visitors and route them to the right demo path. This section includes a ready embed shell.
+        </p>
+
+        <div class="tavus-wrap">
+          <article class="tavus-card">
+            <h3>Let prospects talk to your AI first, then book with your team</h3>
+            <p>
+              Use Tavus as the first touchpoint for inbound traffic to increase qualification quality before the live demo.
+              This is ideal for high-volume campaigns where faster response time improves conversion.
+            </p>
+            <div class="benefit-line">
+              Works with rep-based routing: pass UTM + rep parameters directly into your booking link and CRM fields.
+            </div>
+            <div class="hero-cta-group">
+              <a
+                class="pill-cta track-link"
+                data-track-link="true"
+                href="https://calendly.com/roofgenius/demo"
+              >
+                Book Through Demo Flow
+              </a>
+              <a
+                class="pill-ghost track-link"
+                data-track-link="true"
+                href="https://roofgenius.ai/aisupplements-pricing"
+              >
+                Compare Plans
+              </a>
+            </div>
+          </article>
+
+          <!-- Tavus integration shell:
+               Replace this div with your Tavus widget/embed script when ready. -->
+          <aside class="embed-shell" id="tavus-embed-shell">
+            <div>
+              <strong>Tavus AI Widget Placeholder</strong>
+              <div>Add Tavus embed code here for conversational qualification + booking.</div>
+              <small>
+                Suggested implementation: replace this shell with Tavus embed container + script tag.
+              </small>
+            </div>
+          </aside>
+        </div>
+
+        <section class="demo-form-wrap" aria-label="Demo request form">
+          <h3>Request a Demo</h3>
+          <p>
+            This form is UTM-aware and rep-aware to support one shared page across multiple team members.
+          </p>
+          <form action="#" method="post">
+            <div class="grid-2">
+              <input class="field" type="text" name="full_name" placeholder="Full name*" required>
+              <input class="field" type="text" name="company_name" placeholder="Company name*" required>
+              <input class="field" type="email" name="email" placeholder="Work email*" required>
+              <input class="field" type="tel" name="phone" placeholder="Phone number*">
+            </div>
+            <textarea class="full-field" name="notes" placeholder="What are you trying to solve right now?"></textarea>
+
+            <input type="hidden" name="utm_source" data-utm-field="utm_source">
+            <input type="hidden" name="utm_medium" data-utm-field="utm_medium">
+            <input type="hidden" name="utm_campaign" data-utm-field="utm_campaign">
+            <input type="hidden" name="utm_term" data-utm-field="utm_term">
+            <input type="hidden" name="utm_content" data-utm-field="utm_content">
+            <input type="hidden" name="rep_name" data-utm-field="rep_name">
+            <input type="hidden" name="rep_email" data-utm-field="rep_email">
+            <input type="hidden" name="rep_phone" data-utm-field="rep_phone">
+
+            <div class="form-footer">
+              <button class="pill-cta" type="submit">Submit Demo Request</button>
+              <span class="small-note">30-day money-back guarantee • cancel anytime</span>
+            </div>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <strong>Recommended operations model:</strong>
+      Keep one canonical landing page and route attribution by UTM + rep parameters (instead of duplicating pages).
+      Example URL:
+      <code>?utm_source=meta&utm_campaign=spring&rep_name=John%20Smith&rep_email=john@roofgenius.ai</code>.
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var defaultDemoLink = "https://calendly.com/roofgenius/demo";
+      var url = new URL(window.location.href);
+      var params = url.searchParams;
+      var storageKey = "roofgenius_attribution";
+      var allowedKeys = [
+        "utm_source",
+        "utm_medium",
+        "utm_campaign",
+        "utm_term",
+        "utm_content",
+        "rep_name",
+        "rep_email",
+        "rep_phone",
+        "rep_calendly"
+      ];
+
+      var attribution = {};
+      try {
+        attribution = JSON.parse(localStorage.getItem(storageKey) || "{}");
+      } catch (error) {
+        attribution = {};
+      }
+
+      allowedKeys.forEach(function (key) {
+        var value = params.get(key);
+        if (value) {
+          attribution[key] = value;
+        }
+      });
+
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(attribution));
+      } catch (error) {
+        // Keep page behavior resilient if localStorage is blocked.
+      }
+
+      var repName = attribution.rep_name || "RoofGenius Team";
+      var repEmail = attribution.rep_email || "";
+      var repPhone = attribution.rep_phone || "";
+      var repCalendly = attribution.rep_calendly || "";
+      var bookingLink = repCalendly || defaultDemoLink;
+
+      var repNameNode = document.querySelector("[data-rep-name]");
+      if (repNameNode) repNameNode.textContent = repName;
+
+      var repContactNode = document.querySelector("[data-rep-contact]");
+      var repEmailNode = document.querySelector("[data-rep-email]");
+      var repPhoneNode = document.querySelector("[data-rep-phone]");
+      if (repContactNode && (repEmail || repPhone)) {
+        repContactNode.style.display = "inline";
+      }
+      if (repEmailNode) repEmailNode.textContent = repEmail || "email unavailable";
+      if (repPhoneNode) repPhoneNode.textContent = repPhone || "phone unavailable";
+
+      function addTrackingParams(baseLink) {
+        var linkUrl = new URL(baseLink, window.location.origin);
+        allowedKeys.forEach(function (key) {
+          if (attribution[key]) {
+            linkUrl.searchParams.set(key, attribution[key]);
+          }
+        });
+        return linkUrl.toString();
+      }
+
+      document.querySelectorAll("[data-track-link='true']").forEach(function (linkNode) {
+        var currentHref = linkNode.getAttribute("href") || "";
+        var hrefToUse = currentHref.indexOf("calendly.com") > -1 ? bookingLink : currentHref;
+        linkNode.setAttribute("href", addTrackingParams(hrefToUse));
+      });
+
+      document.querySelectorAll("[data-utm-field]").forEach(function (fieldNode) {
+        var key = fieldNode.getAttribute("data-utm-field");
+        if (key && attribution[key]) {
+          fieldNode.value = attribution[key];
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
