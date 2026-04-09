@@ -552,6 +552,80 @@
       color: #78350f;
     }
 
+    .rep-profile-card {
+      margin-top: 0.72rem;
+      border: 1px solid #fecaca;
+      background: #fff;
+      border-radius: 14px;
+      padding: 0.78rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.72rem;
+      align-items: center;
+    }
+
+    .rep-avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      border: 1px solid #fecaca;
+      background: #fff1f2;
+      overflow: hidden;
+      position: relative;
+      display: grid;
+      place-items: center;
+      color: #9f1239;
+      font-weight: 800;
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
+    }
+
+    .rep-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .rep-profile-label {
+      margin: 0;
+      color: #64748b;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      font-weight: 800;
+    }
+
+    .rep-profile-name {
+      margin: 0.2rem 0 0;
+      font-size: 1rem;
+      line-height: 1.2;
+      color: #0f172a;
+      letter-spacing: -0.01em;
+    }
+
+    .rep-profile-title {
+      margin: 0.2rem 0 0.56rem;
+      color: #475569;
+      font-size: 0.84rem;
+    }
+
+    .rep-profile-contact {
+      margin: 0 0 0.55rem;
+      color: #64748b;
+      font-size: 0.8rem;
+    }
+
+    .rep-profile-contact span {
+      display: inline-block;
+      margin-right: 0.52rem;
+    }
+
+    .rep-book-btn {
+      padding: 0.48rem 0.82rem;
+      font-size: 0.82rem;
+    }
+
     .form-status {
       margin-top: 0.85rem;
       border-radius: 12px;
@@ -731,6 +805,7 @@
         <a
           class="pill-cta track-link"
           data-track-link="true"
+          data-track-event="header_schedule_demo_click"
           href="https://calendly.com/roofgenius/demo"
         >
           Schedule Demo
@@ -766,6 +841,7 @@
             <a
               class="pill-cta track-link"
               data-track-link="true"
+              data-track-event="hero_primary_demo_click"
               href="https://calendly.com/roofgenius/demo"
             >
               <span data-icp-copy="primary_cta">Book Storm Demo</span>
@@ -773,6 +849,7 @@
             <a
               class="pill-ghost track-link"
               data-track-link="true"
+              data-track-event="hero_pricing_click"
               href="https://roofgenius.ai/aisupplements-pricing"
             >
               See Pricing
@@ -798,6 +875,31 @@
             Assigned rep:
             <strong data-rep-name>RoofGenius Team</strong>
             <span data-rep-contact style="display: none;"> • <span data-rep-email></span> • <span data-rep-phone></span></span>
+          </div>
+
+          <div class="rep-profile-card" data-rep-profile>
+            <div class="rep-avatar">
+              <img src="" alt="Assigned representative photo" data-rep-photo-img>
+              <span data-rep-initials>RG</span>
+            </div>
+            <div>
+              <p class="rep-profile-label">Your Assigned Specialist</p>
+              <h4 class="rep-profile-name" data-rep-profile-name>RoofGenius Team</h4>
+              <p class="rep-profile-title" data-rep-profile-title>Demo Specialist</p>
+              <p class="rep-profile-contact">
+                <span data-rep-profile-email></span>
+                <span data-rep-profile-phone></span>
+              </p>
+              <a
+                class="pill-cta rep-book-btn track-link"
+                data-track-link="true"
+                data-track-event="rep_profile_book_click"
+                data-rep-calendar-link
+                href="https://calendly.com/auditgeniusai-sales/30min"
+              >
+                Book with <span data-rep-first-name>our team</span>
+              </a>
+            </div>
           </div>
         </aside>
       </div>
@@ -837,6 +939,7 @@
               <a
                 class="pill-cta track-link"
                 data-track-link="true"
+                data-track-event="product_ai_supplement_demo_click"
                 href="https://calendly.com/roofgenius/demo"
               >
                 See AI Supplement Live
@@ -869,6 +972,7 @@
               <a
                 class="pill-cta track-link"
                 data-track-link="true"
+                data-track-event="product_ai_estimator_demo_click"
                 href="https://calendly.com/roofgenius/demo"
               >
                 See AI Estimator Live
@@ -901,6 +1005,7 @@
               <a
                 class="pill-cta track-link"
                 data-track-link="true"
+                data-track-event="product_instant_quote_demo_click"
                 href="https://calendly.com/roofgenius/demo"
               >
                 See Instant Quote Live
@@ -964,6 +1069,7 @@
               <a
                 class="pill-cta track-link"
                 data-track-link="true"
+                data-track-event="tavus_book_flow_click"
                 href="https://calendly.com/roofgenius/demo"
               >
                 Book Through Demo Flow
@@ -971,6 +1077,7 @@
               <a
                 class="pill-ghost track-link"
                 data-track-link="true"
+                data-track-event="tavus_compare_plans_click"
                 href="https://roofgenius.ai/aisupplements-pricing"
               >
                 Compare Plans
@@ -1060,6 +1167,7 @@
       <a
         class="mini-btn primary track-link"
         data-track-link="true"
+        data-track-event="mobile_book_demo_click"
         data-mobile-demo-link="true"
         href="https://calendly.com/roofgenius/demo"
       >
@@ -1068,6 +1176,7 @@
       <a
         class="mini-btn secondary track-link"
         data-track-link="true"
+        data-track-event="mobile_tavus_jump_click"
         data-mobile-tavus-link="true"
         href="#tavus-demo"
       >
@@ -1153,10 +1262,16 @@
         "rep_email",
         "rep_phone",
         "rep_calendly",
+        "rep_photo",
+        "rep_title",
+        "rep_calendar",
         "icp",
         "form_endpoint",
         "tavus_conversation_url",
-        "tavus_embed_url"
+        "tavus_embed_url",
+        "ga4_measurement_id",
+        "meta_pixel_id",
+        "linkedin_partner_id"
       ];
 
       var attribution = {};
@@ -1183,7 +1298,10 @@
       var repEmail = attribution.rep_email || "";
       var repPhone = attribution.rep_phone || "";
       var repCalendly = attribution.rep_calendly || "";
-      var bookingLink = repCalendly || defaultDemoLink;
+      var repPhoto = attribution.rep_photo || "";
+      var repTitle = attribution.rep_title || "Demo Specialist";
+      var repCalendar = attribution.rep_calendar || repCalendly || "";
+      var bookingLink = repCalendar || repCalendly || defaultDemoLink;
       var selectedIcp = attribution.icp === "retail" ? "retail" : "storm";
       var formEndpoint = attribution.form_endpoint || defaultFormEndpoint;
       var tavusConversationUrl =
@@ -1191,6 +1309,82 @@
         attribution.tavus_embed_url ||
         window.ROOFGENIUS_TAVUS_CONVERSATION_URL ||
         "";
+
+      var ga4MeasurementId = attribution.ga4_measurement_id || window.ROOFGENIUS_GA4_MEASUREMENT_ID || "";
+      var metaPixelId = attribution.meta_pixel_id || window.ROOFGENIUS_META_PIXEL_ID || "";
+      var linkedInPartnerId = attribution.linkedin_partner_id || window.ROOFGENIUS_LINKEDIN_PARTNER_ID || "";
+
+      function injectAnalyticsVendors() {
+        if (ga4MeasurementId && !window.gtag) {
+          var gaScript = document.createElement("script");
+          gaScript.async = true;
+          gaScript.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(ga4MeasurementId);
+          document.head.appendChild(gaScript);
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function () {
+            window.dataLayer.push(arguments);
+          };
+          window.gtag("js", new Date());
+          window.gtag("config", ga4MeasurementId, { send_page_view: true });
+        }
+
+        if (metaPixelId && !window.fbq) {
+          !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function () {
+              n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = true;
+            n.version = "2.0";
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = true;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s);
+          }(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+          window.fbq("init", metaPixelId);
+          window.fbq("track", "PageView");
+        }
+
+        if (linkedInPartnerId && !window.lintrk) {
+          window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+          window._linkedin_data_partner_ids.push(String(linkedInPartnerId));
+          var liScript = document.createElement("script");
+          liScript.type = "text/javascript";
+          liScript.async = true;
+          liScript.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+          document.head.appendChild(liScript);
+        }
+      }
+
+      function trackEvent(eventName, eventData) {
+        var payload = eventData || {};
+        var commonPayload = {
+          event_name: eventName,
+          icp: attribution.icp || selectedIcp,
+          rep_name: repName,
+          rep_email: repEmail || undefined,
+          utm_source: attribution.utm_source || undefined,
+          utm_medium: attribution.utm_medium || undefined,
+          utm_campaign: attribution.utm_campaign || undefined
+        };
+        var merged = Object.assign({}, commonPayload, payload);
+
+        if (window.gtag) {
+          window.gtag("event", eventName, merged);
+        }
+        if (window.fbq) {
+          window.fbq("trackCustom", eventName, merged);
+        }
+        if (window.lintrk) {
+          window.lintrk("track", { conversion_id: eventName });
+        }
+      }
+
+      injectAnalyticsVendors();
 
       var repNameNode = document.querySelector("[data-rep-name]");
       if (repNameNode) repNameNode.textContent = repName;
@@ -1203,6 +1397,43 @@
       }
       if (repEmailNode) repEmailNode.textContent = repEmail || "email unavailable";
       if (repPhoneNode) repPhoneNode.textContent = repPhone || "phone unavailable";
+
+      var repProfileName = document.querySelector("[data-rep-profile-name]");
+      var repProfileTitle = document.querySelector("[data-rep-profile-title]");
+      var repProfileEmail = document.querySelector("[data-rep-profile-email]");
+      var repProfilePhone = document.querySelector("[data-rep-profile-phone]");
+      var repPhotoImg = document.querySelector("[data-rep-photo-img]");
+      var repInitialsNode = document.querySelector("[data-rep-initials]");
+      var repCalendarLinkNode = document.querySelector("[data-rep-calendar-link]");
+      var repFirstNameNode = document.querySelector("[data-rep-first-name]");
+
+      if (repProfileName) repProfileName.textContent = repName;
+      if (repProfileTitle) repProfileTitle.textContent = repTitle;
+      if (repProfileEmail) repProfileEmail.textContent = repEmail ? " • " + repEmail : "";
+      if (repProfilePhone) repProfilePhone.textContent = repPhone ? " • " + repPhone : "";
+
+      var firstName = repName.split(" ")[0] || "our team";
+      if (repFirstNameNode) repFirstNameNode.textContent = firstName;
+
+      var initials = repName
+        .split(" ")
+        .filter(Boolean)
+        .slice(0, 2)
+        .map(function (part) { return part[0].toUpperCase(); })
+        .join("");
+      if (repInitialsNode) repInitialsNode.textContent = initials || "RG";
+
+      if (repPhotoImg && repPhoto) {
+        repPhotoImg.src = repPhoto;
+        repPhotoImg.style.display = "block";
+        repPhotoImg.onerror = function () {
+          repPhotoImg.style.display = "none";
+        };
+      }
+
+      if (repCalendarLinkNode) {
+        repCalendarLinkNode.setAttribute("href", bookingLink);
+      }
 
       function renderIcpCopy(mode) {
         var content = ICP_CONTENT[mode] || ICP_CONTENT.storm;
@@ -1255,6 +1486,14 @@
         var currentHref = linkNode.getAttribute("href") || "";
         var hrefToUse = currentHref.indexOf("calendly.com") > -1 ? bookingLink : currentHref;
         linkNode.setAttribute("href", addTrackingParams(hrefToUse));
+
+        linkNode.addEventListener("click", function () {
+          var eventName = linkNode.getAttribute("data-track-event") || "cta_click";
+          trackEvent(eventName, {
+            cta_label: (linkNode.textContent || "").trim(),
+            cta_href: linkNode.getAttribute("href") || ""
+          });
+        });
       });
 
       function populateTrackingFields() {
@@ -1328,6 +1567,7 @@
           submitBtn.disabled = true;
           submitBtn.textContent = "Submitting...";
           showFormStatus("Sending your demo request...", "success");
+          trackEvent("demo_form_submit_attempt", { form_endpoint: formEndpoint });
 
           var formData = new FormData(formNode);
           var payload = {};
@@ -1351,6 +1591,7 @@
             })
             .then(function () {
               showFormStatus("Success. Your demo request was submitted. A team member will contact you shortly.", "success");
+              trackEvent("demo_form_submit_success", { form_endpoint: formEndpoint });
               formNode.reset();
               populateTrackingFields();
               setTimeout(function () {
@@ -1358,6 +1599,7 @@
               }, 600);
             })
             .catch(function () {
+              trackEvent("demo_form_submit_error", { form_endpoint: formEndpoint });
               showFormStatus(
                 "Submission could not be completed from this browser. Opening booking page now so you can secure your demo.",
                 "error"
@@ -1381,11 +1623,15 @@
         tavusIframe.loading = "lazy";
         tavusIframe.allow = "camera; microphone; autoplay; clipboard-write";
         tavusIframe.setAttribute("allowfullscreen", "true");
+        tavusIframe.addEventListener("load", function () {
+          trackEvent("tavus_embed_loaded", { tavus_url: safeTavusUrl });
+        });
         tavusShell.innerHTML = "";
         tavusShell.appendChild(tavusIframe);
       } else if (tavusStatus) {
         tavusStatus.textContent =
           "No Tavus conversation URL detected. Add ?tavus_conversation_url=https://... to this page URL.";
+        trackEvent("tavus_embed_missing_url", {});
       }
 
       renderIcpCopy(selectedIcp);
