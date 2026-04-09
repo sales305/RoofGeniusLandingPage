@@ -83,10 +83,17 @@
       letter-spacing: -0.01em;
     }
 
-    .brand img {
+    .brand-logo {
+      width: 188px;
+      max-width: 40vw;
+      height: 44px;
+      display: block;
+    }
+
+    .brand-mark {
       width: 152px;
       max-width: 40vw;
-      height: auto;
+      height: 36px;
       display: block;
     }
 
@@ -757,6 +764,11 @@
         justify-content: space-between;
       }
 
+      .brand-logo {
+        width: 156px;
+        height: 38px;
+      }
+
       .product-grid,
       .tavus-wrap,
       .grid-2,
@@ -795,7 +807,19 @@
   <header class="site-header">
     <div class="container header-wrap">
       <a class="brand" href="#top" aria-label="RoofGenius home">
-        <img src="https://roofgeniusai.com/logo.png" alt="RoofGenius logo">
+        <svg class="brand-mark" viewBox="0 0 220 52" role="img" aria-label="RoofGenius logo">
+          <defs>
+            <linearGradient id="rgLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#dc2626" />
+              <stop offset="100%" stop-color="#f97316" />
+            </linearGradient>
+          </defs>
+          <rect x="0" y="6" rx="9" ry="9" width="40" height="40" fill="url(#rgLogoGradient)"></rect>
+          <path d="M8 31 L20 18 L32 31" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <rect x="18.2" y="31" width="3.6" height="7" fill="#ffffff"></rect>
+          <text x="48" y="25" fill="#0f172a" font-size="18" font-weight="800" font-family="Inter, Segoe UI, Arial, sans-serif">RoofGenius</text>
+          <text x="48" y="40" fill="#64748b" font-size="9.6" font-weight="700" letter-spacing="1.15" font-family="Inter, Segoe UI, Arial, sans-serif">AI PLATFORM</text>
+        </svg>
       </a>
 
       <nav class="nav-links">
