@@ -1,0 +1,1666 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoofGenius AI | AI Supplement, AI Estimator & Instant Quote</title>
+  <meta
+    name="description"
+    content="RoofGenius helps roofing contractors recover missed revenue, estimate faster, and close more jobs with AI Supplement, AI Estimator, and Instant Quote."
+  >
+  <style>
+    :root {
+      --rg-red: #ff1f1f;
+      --rg-red-dark: #c30000;
+      --rg-orange: #d10000;
+      --rg-ink: #f1f5ff;
+      --rg-slate: #b7c3dd;
+      --rg-muted: #8fa0bf;
+      --rg-bg: #06080d;
+      --rg-white: #ffffff;
+      --rg-border: #223047;
+      --rg-success: #22c55e;
+      --shadow-soft: 0 14px 34px rgba(0, 0, 0, 0.45);
+      --shadow-strong: 0 26px 52px rgba(0, 0, 0, 0.6);
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(1000px 550px at 15% -5%, rgba(255, 31, 31, 0.18) 0%, rgba(255, 31, 31, 0) 55%),
+        radial-gradient(900px 500px at 85% 0%, rgba(195, 0, 0, 0.14) 0%, rgba(195, 0, 0, 0) 60%),
+        linear-gradient(180deg, #05070d 0%, #070b14 45%, #080d16 100%);
+      color: var(--rg-ink);
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 2.25rem, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .top-banner {
+      background: linear-gradient(90deg, #8d0000, #ff1f1f 45%, #9d0000);
+      color: #fff5f5;
+      font-weight: 600;
+      font-size: 0.92rem;
+      text-align: center;
+      padding: 0.6rem 1rem;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(7, 12, 20, 0.86);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(34, 48, 71, 0.95);
+    }
+
+    .header-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.44rem 0;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.52rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      display: block;
+      object-fit: cover;
+      border: 1px solid #2d3d59;
+      background: #0d1422;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+    }
+
+    .brand-text {
+      font-size: clamp(1.45rem, 2.4vw, 2rem);
+      font-weight: 800;
+      color: #f8fbff;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.05rem;
+      font-size: 0.93rem;
+      color: #c0cde4;
+    }
+
+    .pill-cta,
+    .pill-ghost {
+      border-radius: 999px;
+      padding: 0.62rem 1.05rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: 180ms ease;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .pill-cta {
+      color: var(--rg-white);
+      background: linear-gradient(90deg, #ff1f1f, #bf0000);
+      box-shadow: 0 12px 28px rgba(195, 0, 0, 0.38);
+    }
+
+    .pill-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(195, 0, 0, 0.45);
+    }
+
+    .pill-ghost {
+      border: 1px solid #30415f;
+      color: #d7e1f4;
+      background: #0f1726;
+    }
+
+    .hero {
+      padding: 5.25rem 0 3.4rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: start;
+      gap: 2rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      border: 1px solid rgba(255, 31, 31, 0.4);
+      color: #ff9f9f;
+      font-weight: 700;
+      font-size: 0.8rem;
+      border-radius: 999px;
+      background: rgba(255, 31, 31, 0.12);
+      padding: 0.33rem 0.7rem;
+      margin-bottom: 0.9rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4.2vw, 3.5rem);
+      line-height: 1.1;
+      margin: 0 0 1rem;
+      letter-spacing: -0.035em;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 66ch;
+      color: #c0cde4;
+      font-size: 1.04rem;
+    }
+
+    .hero-cta-group {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 0.72rem;
+      flex-wrap: wrap;
+    }
+
+    .icp-switch {
+      margin-top: 1rem;
+      display: inline-flex;
+      border: 1px solid #3a4862;
+      border-radius: 999px;
+      padding: 0.24rem;
+      background: #0e1727;
+      gap: 0.25rem;
+    }
+
+    .icp-button {
+      border: 0;
+      background: transparent;
+      color: #c2d2ef;
+      border-radius: 999px;
+      padding: 0.45rem 0.78rem;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 170ms ease;
+    }
+
+    .icp-button[aria-pressed="true"] {
+      background: linear-gradient(90deg, #ff1f1f, #bf0000);
+      color: var(--rg-white);
+      box-shadow: 0 8px 20px rgba(195, 0, 0, 0.4);
+    }
+
+    .icp-context {
+      margin-top: 0.85rem;
+      color: #b2c2de;
+      font-size: 0.97rem;
+      max-width: 68ch;
+      border-left: 3px solid #ff3b3b;
+      padding-left: 0.72rem;
+    }
+
+    .stat-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.35rem;
+    }
+
+    .stat-pill {
+      background: #0f1726;
+      border: 1px solid #2d3d59;
+      border-radius: 999px;
+      padding: 0.42rem 0.72rem;
+      font-size: 0.84rem;
+      color: #d3def1;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top right, rgba(255, 31, 31, 0.18) 0%, #0d1626 54%);
+      border: 1px solid #2b3b58;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 1.15rem 1.15rem 1.1rem;
+    }
+
+    .hero-card h3 {
+      margin: 0 0 0.6rem;
+      font-size: 1.1rem;
+    }
+
+    .hero-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.58rem;
+      color: #c4d1e8;
+      font-size: 0.95rem;
+    }
+
+    .hero-card li::before {
+      content: "✓";
+      color: var(--rg-success);
+      margin-right: 0.5rem;
+      font-weight: 800;
+    }
+
+    .section {
+      padding: 1.5rem 0 3.7rem;
+    }
+
+    .section h2 {
+      margin: 0;
+      letter-spacing: -0.025em;
+      font-size: clamp(1.7rem, 3vw, 2.35rem);
+      line-height: 1.15;
+    }
+
+    .section-intro {
+      margin: 0.72rem 0 1.65rem;
+      color: #9cb0cf;
+      max-width: 65ch;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .product-card {
+      background: #0d1626;
+      border: 1px solid #2b3b58;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .product-top {
+      padding: 1.15rem;
+      border-bottom: 1px solid #25344c;
+    }
+
+    .product-badge {
+      display: inline-flex;
+      border-radius: 999px;
+      background: rgba(255, 31, 31, 0.12);
+      color: #ffb3b3;
+      border: 1px solid rgba(255, 31, 31, 0.32);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.23rem 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-title {
+      margin: 0;
+      font-size: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .product-copy {
+      margin: 0.55rem 0 0;
+      color: #a8b9d6;
+      font-size: 0.95rem;
+    }
+
+    .product-body {
+      padding: 0.95rem 1.15rem 1.18rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+      height: 100%;
+    }
+
+    .checklist {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.5rem;
+      color: #dbe6f8;
+      font-size: 0.9rem;
+    }
+
+    .checklist li {
+      display: flex;
+      gap: 0.5rem;
+      align-items: start;
+    }
+
+    .checklist li > span:first-child {
+      color: var(--rg-success);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-top: 0.1rem;
+    }
+
+    .video-shell {
+      border: 2px dashed #334763;
+      border-radius: var(--radius-md);
+      background: linear-gradient(180deg, #0d1626, #0a111d);
+      min-height: 210px;
+      padding: 0.95rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      color: #9fb1ce;
+      gap: 0.4rem;
+    }
+
+    .video-shell strong {
+      color: #f1f5ff;
+      font-size: 1rem;
+    }
+
+    .video-shell small {
+      color: #8ea2bf;
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .step-card {
+      border-radius: var(--radius-md);
+      border: 1px solid #2a3a56;
+      background: #0d1626;
+      padding: 1rem 0.95rem;
+    }
+
+    .step-number {
+      width: 1.9rem;
+      height: 1.9rem;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(180deg, #ff1f1f, #bf0000);
+      font-size: 0.85rem;
+      font-weight: 800;
+      margin-bottom: 0.58rem;
+    }
+
+    .step-card h4 {
+      margin: 0 0 0.35rem;
+      font-size: 0.97rem;
+    }
+
+    .step-card p {
+      margin: 0;
+      color: #9cb1ce;
+      font-size: 0.87rem;
+    }
+
+    .tavus-wrap {
+      margin-top: 1.1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .tavus-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid #2b3b58;
+      background: linear-gradient(180deg, #121d2f, #0c1422);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .tavus-card h3 {
+      margin: 0;
+      font-size: 1.35rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .tavus-card p {
+      color: #b2c3de;
+      margin: 0.7rem 0 1rem;
+    }
+
+    .benefit-line {
+      border-left: 3px solid var(--rg-red);
+      padding-left: 0.7rem;
+      color: #9fb2d0;
+      margin-bottom: 0.9rem;
+      font-size: 0.93rem;
+    }
+
+    .embed-shell {
+      border-radius: var(--radius-lg);
+      border: 2px dashed #334763;
+      background: #0d1626;
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      text-align: center;
+      color: #9fb1ce;
+    }
+
+    .embed-shell strong {
+      display: block;
+      font-size: 1.06rem;
+      color: #f1f5ff;
+      margin-bottom: 0.42rem;
+    }
+
+    .embed-shell iframe {
+      width: 100%;
+      min-height: 320px;
+      border: 0;
+      border-radius: 12px;
+      background: #0f172a;
+    }
+
+    .demo-form-wrap {
+      margin-top: 1.1rem;
+      background: #0d1626;
+      border: 1px solid #2b3b58;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 1.2rem;
+    }
+
+    .demo-form-wrap h3 {
+      margin: 0 0 0.22rem;
+      letter-spacing: -0.012em;
+    }
+
+    .demo-form-wrap p {
+      margin: 0 0 0.9rem;
+      color: #9cb0cf;
+      font-size: 0.92rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.72rem;
+    }
+
+    .field,
+    .full-field {
+      width: 100%;
+      border: 1px solid #334763;
+      border-radius: 11px;
+      padding: 0.7rem 0.78rem;
+      font: inherit;
+      font-size: 0.92rem;
+      background: #0b1321;
+      color: #eef4ff;
+    }
+
+    .field:focus,
+    .full-field:focus {
+      outline: 2px solid rgba(255, 31, 31, 0.3);
+      border-color: #ff3b3b;
+    }
+
+    .full-field {
+      margin-top: 0.72rem;
+      resize: vertical;
+      min-height: 95px;
+    }
+
+    .form-footer {
+      margin-top: 0.83rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.62rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .small-note {
+      color: #8ea2bf;
+      font-size: 0.8rem;
+    }
+
+    .rep-card {
+      margin-top: 0.75rem;
+      border: 1px solid #5e1a1a;
+      background: #1a1114;
+      border-radius: 12px;
+      padding: 0.73rem 0.82rem;
+      font-size: 0.87rem;
+      color: #f2b8b8;
+    }
+
+    .rep-profile-card {
+      margin-top: 0.72rem;
+      border: 1px solid #2b3b58;
+      background: #0b1321;
+      border-radius: 14px;
+      padding: 0.78rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.72rem;
+      align-items: center;
+    }
+
+    .rep-avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      border: 1px solid #374b6a;
+      background: #121f33;
+      overflow: hidden;
+      position: relative;
+      display: grid;
+      place-items: center;
+      color: #ff9090;
+      font-weight: 800;
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
+    }
+
+    .rep-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .rep-profile-label {
+      margin: 0;
+      color: #8ea2bf;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      font-weight: 800;
+    }
+
+    .rep-profile-name {
+      margin: 0.2rem 0 0;
+      font-size: 1rem;
+      line-height: 1.2;
+      color: #eff5ff;
+      letter-spacing: -0.01em;
+    }
+
+    .rep-profile-title {
+      margin: 0.2rem 0 0.56rem;
+      color: #a3b6d4;
+      font-size: 0.84rem;
+    }
+
+    .rep-profile-contact {
+      margin: 0 0 0.55rem;
+      color: #8ea2bf;
+      font-size: 0.8rem;
+    }
+
+    .rep-profile-contact span {
+      display: inline-block;
+      margin-right: 0.52rem;
+    }
+
+    .rep-book-btn {
+      padding: 0.48rem 0.82rem;
+      font-size: 0.82rem;
+    }
+
+    .form-status {
+      margin-top: 0.85rem;
+      border-radius: 12px;
+      padding: 0.72rem 0.8rem;
+      font-size: 0.86rem;
+      display: none;
+    }
+
+    .form-status.is-success {
+      display: block;
+      border: 1px solid #24603f;
+      background: #10241b;
+      color: #8df5bd;
+    }
+
+    .form-status.is-error {
+      display: block;
+      border: 1px solid #642828;
+      background: #2a1116;
+      color: #ff9c9c;
+    }
+
+    .submit-btn[disabled] {
+      cursor: not-allowed;
+      opacity: 0.7;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .integration-note {
+      margin-top: 0.68rem;
+      font-size: 0.78rem;
+      color: #8ea2bf;
+      line-height: 1.5;
+    }
+
+    .integration-note code {
+      background: #111b2c;
+      border-radius: 6px;
+      padding: 0.08rem 0.32rem;
+      color: #e4edff;
+    }
+
+    .mobile-sticky-cta {
+      display: none;
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 80;
+      border-top: 1px solid #2d3d59;
+      background: rgba(7, 12, 20, 0.96);
+      backdrop-filter: blur(8px);
+      padding: 0.62rem 0.72rem;
+      gap: 0.55rem;
+      box-shadow: 0 -6px 24px rgba(15, 23, 42, 0.08);
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mobile-sticky-copy {
+      font-size: 0.73rem;
+      line-height: 1.35;
+      color: #ccd8ed;
+      flex: 1;
+      max-width: 44%;
+    }
+
+    .mobile-sticky-actions {
+      display: flex;
+      gap: 0.46rem;
+    }
+
+    .mini-btn {
+      border-radius: 999px;
+      padding: 0.48rem 0.68rem;
+      font-size: 0.79rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 92px;
+    }
+
+    .mini-btn.primary {
+      color: #fff;
+      background: linear-gradient(90deg, #ff1f1f, #bf0000);
+    }
+
+    .mini-btn.secondary {
+      color: #dbe7fa;
+      border: 1px solid #30415f;
+      background: #101a2b;
+    }
+
+    .footer {
+      margin-top: 3rem;
+      padding: 1.25rem 0 2.2rem;
+      border-top: 1px solid #24344f;
+      color: #9eb2d1;
+      font-size: 0.86rem;
+    }
+
+    .footer strong {
+      color: #f1f6ff;
+    }
+
+    @media (max-width: 1050px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .header-wrap {
+        flex-wrap: wrap;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .brand-logo {
+        width: 46px;
+        height: 46px;
+      }
+
+      .brand-text {
+        font-size: 1.32rem;
+      }
+
+      .product-grid,
+      .tavus-wrap,
+      .grid-2,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 4.2rem;
+      }
+
+      body {
+        padding-bottom: 88px;
+      }
+
+      .mobile-sticky-cta {
+        display: flex;
+      }
+
+      .icp-switch {
+        width: 100%;
+      }
+
+      .icp-button {
+        flex: 1;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-banner">
+    4.9/5 from roofing pros • Recover missed line items in ~60 seconds • No percentage cuts
+  </div>
+
+  <header class="site-header">
+    <div class="container header-wrap">
+      <a class="brand" href="#top" aria-label="RoofGenius home">
+        <img class="brand-logo" src="./roofgenius-logo-icon.png" alt="RoofGenius logo">
+      </a>
+
+      <nav class="nav-links">
+        <a href="#products">Products</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#tavus-demo">Book Demo</a>
+        <a
+          class="pill-cta track-link"
+          data-track-link="true"
+          data-track-event="header_schedule_demo_click"
+          href="https://calendly.com/roofgenius/demo"
+        >
+          Schedule Demo
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow" data-icp-copy="eyebrow">Built for Storm Restoration Teams</span>
+          <h1 data-icp-copy="hero_title">
+            Recover missed insurance revenue with AI Supplement, AI Estimator, and Instant Quote.
+          </h1>
+          <p data-icp-copy="hero_subtitle">
+            RoofGenius helps restoration teams find underpaid claim items, speed up estimate production,
+            and close jobs faster with customer-ready outputs.
+          </p>
+          <div class="icp-switch" aria-label="Target market selector">
+            <button class="icp-button" type="button" data-icp-button="storm" aria-pressed="true">
+              Storm Restoration
+            </button>
+            <button class="icp-button" type="button" data-icp-button="retail" aria-pressed="false">
+              Retail Roofing
+            </button>
+          </div>
+          <p class="icp-context" data-icp-copy="hero_context">
+            Claim-focused flow: upload estimate + photos, run AI supplementing, send carrier-ready output.
+          </p>
+          <div class="hero-cta-group">
+            <a
+              class="pill-cta track-link"
+              data-track-link="true"
+              data-track-event="hero_primary_demo_click"
+              href="https://calendly.com/roofgenius/demo"
+            >
+              <span data-icp-copy="primary_cta">Book Storm Demo</span>
+            </a>
+            <a
+              class="pill-ghost track-link"
+              data-track-link="true"
+              data-track-event="hero_pricing_click"
+              href="https://roofgenius.ai/aisupplements-pricing"
+            >
+              See Pricing
+            </a>
+          </div>
+          <div class="stat-list">
+            <span class="stat-pill" data-icp-copy="stat_1">$2M+ recovered</span>
+            <span class="stat-pill" data-icp-copy="stat_2">500+ contractors</span>
+            <span class="stat-pill" data-icp-copy="stat_3">94% success rate</span>
+            <span class="stat-pill" data-icp-copy="stat_4">60-second avg. audit time</span>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Why contractors choose RoofGenius">
+          <h3>What top-performing teams use RoofGenius for</h3>
+          <ul>
+            <li data-icp-copy="proof_1">Find missed line items and generate carrier-ready supplements with AI.</li>
+            <li data-icp-copy="proof_2">Automate estimating workflows without waiting on manual reports.</li>
+            <li data-icp-copy="proof_3">Send high-converting proposals with digital-friendly quote experiences.</li>
+            <li data-icp-copy="proof_4">Use one system instead of juggling supplement, estimating, and quote tools.</li>
+          </ul>
+          <div class="rep-card">
+            Assigned rep:
+            <strong data-rep-name>RoofGenius Team</strong>
+            <span data-rep-contact style="display: none;"> • <span data-rep-email></span> • <span data-rep-phone></span></span>
+          </div>
+
+          <div class="rep-profile-card" data-rep-profile>
+            <div class="rep-avatar">
+              <img src="" alt="Assigned representative photo" data-rep-photo-img>
+              <span data-rep-initials>RG</span>
+            </div>
+            <div>
+              <p class="rep-profile-label">Your Assigned Specialist</p>
+              <h4 class="rep-profile-name" data-rep-profile-name>RoofGenius Team</h4>
+              <p class="rep-profile-title" data-rep-profile-title>Demo Specialist</p>
+              <p class="rep-profile-contact">
+                <span data-rep-profile-email></span>
+                <span data-rep-profile-phone></span>
+              </p>
+              <a
+                class="pill-cta rep-book-btn track-link"
+                data-track-link="true"
+                data-track-event="rep_profile_book_click"
+                data-rep-calendar-link
+                href="https://calendly.com/auditgeniusai-sales/30min"
+              >
+                Book with <span data-rep-first-name>our team</span>
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="products" class="section">
+      <div class="container">
+        <h2>Three Core Products Built for Revenue Growth</h2>
+        <p class="section-intro">
+          This page is structured for sales conversion: clear value proposition, proof-driven feature blocks,
+          product demos, and fast-booking CTAs. Video slots are intentionally left as upload shells.
+        </p>
+
+        <div class="product-grid">
+          <article class="product-card">
+            <div class="product-top">
+              <span class="product-badge">Product 01</span>
+              <h3 class="product-title">AI Supplement</h3>
+              <p class="product-copy" data-icp-copy="product_1_copy">
+                Upload your estimate and damage photos, detect missed items fast, and generate adjuster-ready output.
+              </p>
+            </div>
+            <div class="product-body">
+              <ul class="checklist">
+                <li><span>✓</span> <span data-icp-copy="product_1_b1">Audit Xactimate PDFs in about 60 seconds.</span></li>
+                <li><span>✓</span> <span data-icp-copy="product_1_b2">Surface missing labor, materials, overhead, and code-supported items.</span></li>
+                <li><span>✓</span> <span data-icp-copy="product_1_b3">Generate professional supplement letters with citations.</span></li>
+              </ul>
+              <div class="video-shell" id="video-ai-supplement">
+                <strong>Video Placeholder: AI Supplement Demo</strong>
+                <div>Drop in final video embed/file for this product.</div>
+                <small>
+                  Shell prepared for future upload (YouTube/Vimeo/custom player).<br>
+                  Suggested length: 45-90 seconds.
+                </small>
+              </div>
+              <a
+                class="pill-cta track-link"
+                data-track-link="true"
+                data-track-event="product_ai_supplement_demo_click"
+                href="https://calendly.com/roofgenius/demo"
+              >
+                See AI Supplement Live
+              </a>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-top">
+              <span class="product-badge">Product 02</span>
+              <h3 class="product-title">AI Estimator</h3>
+              <p class="product-copy" data-icp-copy="product_2_copy">
+                Build faster, smarter estimates with AI-assisted measurements, line-item logic, and consistent outputs.
+              </p>
+            </div>
+            <div class="product-body">
+              <ul class="checklist">
+                <li><span>✓</span> <span data-icp-copy="product_2_b1">Move from manual estimate work to automated workflows.</span></li>
+                <li><span>✓</span> <span data-icp-copy="product_2_b2">Align output with insurance and retail estimating needs.</span></li>
+                <li><span>✓</span> <span data-icp-copy="product_2_b3">Improve speed-to-quote so your sales team can bid faster.</span></li>
+              </ul>
+              <div class="video-shell" id="video-ai-estimator">
+                <strong>Video Placeholder: AI Estimator Demo</strong>
+                <div>Drop in final video embed/file for this product.</div>
+                <small>
+                  Shell prepared for future upload (YouTube/Vimeo/custom player).<br>
+                  Suggested length: 60-120 seconds.
+                </small>
+              </div>
+              <a
+                class="pill-cta track-link"
+                data-track-link="true"
+                data-track-event="product_ai_estimator_demo_click"
+                href="https://calendly.com/roofgenius/demo"
+              >
+                See AI Estimator Live
+              </a>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-top">
+              <span class="product-badge">Product 03</span>
+              <h3 class="product-title">Instant Quote</h3>
+              <p class="product-copy" data-icp-copy="product_3_copy">
+                Create customer-ready quote experiences quickly so teams can close more jobs with less friction.
+              </p>
+            </div>
+            <div class="product-body">
+              <ul class="checklist">
+                <li><span>✓</span> <span data-icp-copy="product_3_b1">Build polished, presentation-ready quotes in minutes.</span></li>
+                <li><span>✓</span> <span data-icp-copy="product_3_b2">Guide buyers with clear pricing options and next steps.</span></li>
+                <li><span>✓</span> <span data-icp-copy="product_3_b3">Speed up decision-making with a modern, conversion-first quoting flow.</span></li>
+              </ul>
+              <div class="video-shell" id="video-instant-quote">
+                <strong>Video Placeholder: Instant Quote Demo</strong>
+                <div>Drop in final video embed/file for this product.</div>
+                <small>
+                  Shell prepared for future upload (YouTube/Vimeo/custom player).<br>
+                  Suggested length: 45-90 seconds.
+                </small>
+              </div>
+              <a
+                class="pill-cta track-link"
+                data-track-link="true"
+                data-track-event="product_instant_quote_demo_click"
+                href="https://calendly.com/roofgenius/demo"
+              >
+                See Instant Quote Live
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="section">
+      <div class="container">
+        <h2>How RoofGenius Turns Inputs into Revenue</h2>
+        <p class="section-intro">
+          Adapted from the current RoofGenius process: upload, AI analysis, findings review, and carrier-ready output.
+        </p>
+
+        <div class="steps">
+          <article class="step-card">
+            <div class="step-number">1</div>
+            <h4>Upload Files</h4>
+            <p>Submit estimate PDFs, photos, and optional measurements from your current workflow.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-number">2</div>
+            <h4>AI Analysis</h4>
+            <p>RoofGenius scans line items and context to identify opportunities and produce clear findings.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-number">3</div>
+            <h4>Review & Refine</h4>
+            <p>Team members review recommendations, confidence context, and tailor output where needed.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-number">4</div>
+            <h4>Send & Close</h4>
+            <p>Deliver polished supplements and quotes that help recover value and accelerate deal velocity.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="tavus-demo" class="section">
+      <div class="container">
+        <h2>AI-Assisted Demo Booking with Tavus</h2>
+        <p class="section-intro">
+          Tavus is wired for live embedding. Pass your Tavus conversation URL and this area will render an active AI qualifier.
+        </p>
+
+        <div class="tavus-wrap">
+          <article class="tavus-card">
+            <h3>Let prospects talk to your AI first, then book with your team</h3>
+            <p>
+              Use Tavus as the first touchpoint for inbound traffic to increase qualification quality before the live demo.
+              This is ideal for high-volume campaigns where faster response time improves conversion.
+            </p>
+            <div class="benefit-line">
+              Works with rep-based routing: pass UTM + rep parameters directly into your booking link and CRM fields.
+            </div>
+            <div class="hero-cta-group">
+              <a
+                class="pill-cta track-link"
+                data-track-link="true"
+                data-track-event="tavus_book_flow_click"
+                href="https://calendly.com/roofgenius/demo"
+              >
+                Book Through Demo Flow
+              </a>
+              <a
+                class="pill-ghost track-link"
+                data-track-link="true"
+                data-track-event="tavus_compare_plans_click"
+                href="https://roofgenius.ai/aisupplements-pricing"
+              >
+                Compare Plans
+              </a>
+            </div>
+          </article>
+
+          <!-- Tavus integration shell:
+               Pass query parameter `tavus_conversation_url` or set `window.ROOFGENIUS_TAVUS_CONVERSATION_URL`. -->
+          <aside class="embed-shell" id="tavus-embed-shell">
+            <div data-tavus-fallback>
+              <strong>Tavus AI Conversation</strong>
+              <div data-tavus-status>
+                Awaiting a conversation URL...
+              </div>
+              <small>
+                Example: <code>?tavus_conversation_url=https://...</code>
+              </small>
+            </div>
+          </aside>
+        </div>
+
+        <section class="demo-form-wrap" aria-label="Demo request form">
+          <h3>Request a Demo</h3>
+          <p>
+            This form is UTM-aware and rep-aware to support one shared page across multiple team members.
+          </p>
+          <form id="demo-request-form" action="https://api.roofgenius.ai/v1/leads" method="post">
+            <div class="grid-2">
+              <input class="field" type="text" name="full_name" placeholder="Full name*" required>
+              <input class="field" type="text" name="company_name" placeholder="Company name*" required>
+              <input class="field" type="email" name="email" placeholder="Work email*" required>
+              <input class="field" type="tel" name="phone" placeholder="Phone number*" required>
+              <input class="field" type="text" name="service_area" placeholder="Primary service area">
+              <select class="field" name="business_model" required>
+                <option value="" selected disabled>Business model*</option>
+                <option value="storm_restoration">Storm Restoration</option>
+                <option value="retail_roofing">Retail Roofing</option>
+                <option value="mixed">Mixed</option>
+              </select>
+            </div>
+            <textarea class="full-field" name="notes" placeholder="What are you trying to solve right now?"></textarea>
+
+            <input type="hidden" name="utm_source" data-utm-field="utm_source">
+            <input type="hidden" name="utm_medium" data-utm-field="utm_medium">
+            <input type="hidden" name="utm_campaign" data-utm-field="utm_campaign">
+            <input type="hidden" name="utm_term" data-utm-field="utm_term">
+            <input type="hidden" name="utm_content" data-utm-field="utm_content">
+            <input type="hidden" name="rep_name" data-utm-field="rep_name">
+            <input type="hidden" name="rep_email" data-utm-field="rep_email">
+            <input type="hidden" name="rep_phone" data-utm-field="rep_phone">
+            <input type="hidden" name="rep_calendly" data-utm-field="rep_calendly">
+            <input type="hidden" name="icp_focus" data-utm-field="icp">
+            <input type="hidden" name="landing_page_url" data-utm-field="landing_page_url">
+            <input type="hidden" name="form_endpoint_used" data-utm-field="form_endpoint_used">
+
+            <div class="form-footer">
+              <button class="pill-cta submit-btn" type="submit" data-submit-btn="true">Submit Demo Request</button>
+              <span class="small-note">30-day money-back guarantee • cancel anytime</span>
+            </div>
+            <div class="form-status" data-form-status></div>
+            <div class="integration-note">
+              Form endpoint: <code data-form-endpoint-display>https://api.roofgenius.ai/v1/leads</code> •
+              fallback routes to Calendly if API submission is unavailable.
+            </div>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <strong>Recommended operations model:</strong>
+      Keep one canonical landing page and route attribution by UTM + rep parameters (instead of duplicating pages).
+      Example URL:
+      <code>?utm_source=meta&utm_campaign=spring&rep_name=John%20Smith&rep_email=john@roofgenius.ai</code>.
+    </div>
+  </footer>
+
+  <div class="mobile-sticky-cta" aria-label="Mobile sticky call to action">
+    <div class="mobile-sticky-copy">
+      <strong data-icp-copy="sticky_title">Storm team?</strong>
+      <span data-icp-copy="sticky_sub">Book a fast AI supplement walkthrough.</span>
+    </div>
+    <div class="mobile-sticky-actions">
+      <a
+        class="mini-btn primary track-link"
+        data-track-link="true"
+        data-track-event="mobile_book_demo_click"
+        data-mobile-demo-link="true"
+        href="https://calendly.com/roofgenius/demo"
+      >
+        Book Demo
+      </a>
+      <a
+        class="mini-btn secondary track-link"
+        data-track-link="true"
+        data-track-event="mobile_tavus_jump_click"
+        data-mobile-tavus-link="true"
+        href="#tavus-demo"
+      >
+        Tavus AI
+      </a>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var defaultDemoLink = "https://calendly.com/auditgeniusai-sales/30min";
+      var defaultFormEndpoint = "https://api.roofgenius.ai/v1/leads";
+      var ICP_CONTENT = {
+        storm: {
+          eyebrow: "Built for Storm Restoration Teams",
+          hero_title: "Recover missed insurance revenue with AI Supplement, AI Estimator, and Instant Quote.",
+          hero_subtitle: "RoofGenius helps restoration teams find underpaid claim items, speed up estimate production, and close jobs faster with customer-ready outputs.",
+          hero_context: "Claim-focused flow: upload estimate + photos, run AI supplementing, send carrier-ready output.",
+          primary_cta: "Book Storm Demo",
+          stat_1: "$2M+ recovered",
+          stat_2: "94% supplement success rate",
+          stat_3: "60-second avg. audit time",
+          stat_4: "Carrier-ready letters in minutes",
+          proof_1: "Find missed line items and generate carrier-ready supplements with AI.",
+          proof_2: "Automate estimating workflows without waiting on manual reports.",
+          proof_3: "Strengthen adjuster communication with cleaner documentation.",
+          proof_4: "Use one system instead of juggling supplement, estimating, and quote tools.",
+          product_1_copy: "Audit claims fast, flag missed code-backed items, and send professional supplements your team can stand behind.",
+          product_1_b1: "Audit Xactimate PDFs and claim detail quickly.",
+          product_1_b2: "Surface missing labor, materials, overhead, and code-driven opportunities.",
+          product_1_b3: "Generate supplement letters tailored for adjuster review.",
+          product_2_copy: "Turn field inputs into consistent storm-scope estimates without slowing down your production team.",
+          product_2_b1: "Move from manual estimate work to AI-assisted workflows.",
+          product_2_b2: "Keep pricing and line logic aligned to insurance workflows.",
+          product_2_b3: "Increase estimate throughput during high-volume storm periods.",
+          product_3_copy: "Convert approved scope into homeowner-ready quotes so production can move immediately.",
+          product_3_b1: "Build polished quote packages quickly after claim movement.",
+          product_3_b2: "Present upgrades and options without confusing the homeowner.",
+          product_3_b3: "Reduce delay between inspection, supplement, and signed job.",
+          sticky_title: "Storm team?",
+          sticky_sub: "Book a fast AI supplement walkthrough."
+        },
+        retail: {
+          eyebrow: "Built for Retail Roofing Sales Teams",
+          hero_title: "Win more retail jobs with faster AI estimating and instant quote delivery.",
+          hero_subtitle: "RoofGenius helps retail teams estimate with confidence, present clearer options, and move homeowners to yes sooner.",
+          hero_context: "Retail-focused flow: estimate accurately, send quote instantly, and follow up faster with one team system.",
+          primary_cta: "Book Retail Demo",
+          stat_1: "Close 20-40% more jobs",
+          stat_2: "Proposals delivered in minutes",
+          stat_3: "Faster estimate turnaround",
+          stat_4: "One system from lead to close",
+          proof_1: "Create trust with cleaner, data-backed estimates and visual quote outputs.",
+          proof_2: "Respond faster than competitors with instant quoting workflows.",
+          proof_3: "Give homeowners Good/Better/Best style options that are easy to approve.",
+          proof_4: "Unify estimating, quoting, and follow-up so fewer leads go cold.",
+          product_1_copy: "Use AI Supplement for retail scope validation and margin protection before finalizing proposals.",
+          product_1_b1: "Catch missing scope details before quote delivery.",
+          product_1_b2: "Reduce missed cost items that erode gross margin.",
+          product_1_b3: "Standardize quality across every estimator on your team.",
+          product_2_copy: "Speed up estimate generation and keep outputs consistent across reps, crews, and service areas.",
+          product_2_b1: "Turn site inputs into accurate estimate drafts quickly.",
+          product_2_b2: "Keep labor and material assumptions standardized.",
+          product_2_b3: "Bid more jobs per rep without sacrificing quality.",
+          product_3_copy: "Deliver polished, conversion-first quotes that help homeowners decide on the spot.",
+          product_3_b1: "Build polished, presentation-ready quotes in minutes.",
+          product_3_b2: "Guide buyers with clear package options and financing context.",
+          product_3_b3: "Increase close rate with immediate next-step CTAs.",
+          sticky_title: "Retail team?",
+          sticky_sub: "Book an AI estimating + quote demo."
+        }
+      };
+      var url = new URL(window.location.href);
+      var params = url.searchParams;
+      var storageKey = "roofgenius_attribution";
+      var allowedKeys = [
+        "utm_source",
+        "utm_medium",
+        "utm_campaign",
+        "utm_term",
+        "utm_content",
+        "rep_name",
+        "rep_email",
+        "rep_phone",
+        "rep_calendly",
+        "rep_photo",
+        "rep_title",
+        "rep_calendar",
+        "icp",
+        "form_endpoint",
+        "tavus_conversation_url",
+        "tavus_embed_url",
+        "ga4_measurement_id",
+        "meta_pixel_id",
+        "linkedin_partner_id"
+      ];
+
+      var attribution = {};
+      try {
+        attribution = JSON.parse(localStorage.getItem(storageKey) || "{}");
+      } catch (error) {
+        attribution = {};
+      }
+
+      allowedKeys.forEach(function (key) {
+        var value = params.get(key);
+        if (value) {
+          attribution[key] = value;
+        }
+      });
+
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(attribution));
+      } catch (error) {
+        // Keep page behavior resilient if localStorage is blocked.
+      }
+
+      var repName = attribution.rep_name || "RoofGenius Team";
+      var repEmail = attribution.rep_email || "";
+      var repPhone = attribution.rep_phone || "";
+      var repCalendly = attribution.rep_calendly || "";
+      var repPhoto = attribution.rep_photo || "";
+      var repTitle = attribution.rep_title || "Demo Specialist";
+      var repCalendar = attribution.rep_calendar || repCalendly || "";
+      var bookingLink = repCalendar || repCalendly || defaultDemoLink;
+      var selectedIcp = attribution.icp === "retail" ? "retail" : "storm";
+      var formEndpoint = attribution.form_endpoint || defaultFormEndpoint;
+      var tavusConversationUrl =
+        attribution.tavus_conversation_url ||
+        attribution.tavus_embed_url ||
+        window.ROOFGENIUS_TAVUS_CONVERSATION_URL ||
+        "";
+
+      var ga4MeasurementId = attribution.ga4_measurement_id || window.ROOFGENIUS_GA4_MEASUREMENT_ID || "";
+      var metaPixelId = attribution.meta_pixel_id || window.ROOFGENIUS_META_PIXEL_ID || "";
+      var linkedInPartnerId = attribution.linkedin_partner_id || window.ROOFGENIUS_LINKEDIN_PARTNER_ID || "";
+
+      function injectAnalyticsVendors() {
+        if (ga4MeasurementId && !window.gtag) {
+          var gaScript = document.createElement("script");
+          gaScript.async = true;
+          gaScript.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(ga4MeasurementId);
+          document.head.appendChild(gaScript);
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function () {
+            window.dataLayer.push(arguments);
+          };
+          window.gtag("js", new Date());
+          window.gtag("config", ga4MeasurementId, { send_page_view: true });
+        }
+
+        if (metaPixelId && !window.fbq) {
+          !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function () {
+              n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = true;
+            n.version = "2.0";
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = true;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s);
+          }(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+          window.fbq("init", metaPixelId);
+          window.fbq("track", "PageView");
+        }
+
+        if (linkedInPartnerId && !window.lintrk) {
+          window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+          window._linkedin_data_partner_ids.push(String(linkedInPartnerId));
+          var liScript = document.createElement("script");
+          liScript.type = "text/javascript";
+          liScript.async = true;
+          liScript.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+          document.head.appendChild(liScript);
+        }
+      }
+
+      function trackEvent(eventName, eventData) {
+        var payload = eventData || {};
+        var commonPayload = {
+          event_name: eventName,
+          icp: attribution.icp || selectedIcp,
+          rep_name: repName,
+          rep_email: repEmail || undefined,
+          utm_source: attribution.utm_source || undefined,
+          utm_medium: attribution.utm_medium || undefined,
+          utm_campaign: attribution.utm_campaign || undefined
+        };
+        var merged = Object.assign({}, commonPayload, payload);
+
+        if (window.gtag) {
+          window.gtag("event", eventName, merged);
+        }
+        if (window.fbq) {
+          window.fbq("trackCustom", eventName, merged);
+        }
+        if (window.lintrk) {
+          window.lintrk("track", { conversion_id: eventName });
+        }
+      }
+
+      injectAnalyticsVendors();
+
+      var repNameNode = document.querySelector("[data-rep-name]");
+      if (repNameNode) repNameNode.textContent = repName;
+
+      var repContactNode = document.querySelector("[data-rep-contact]");
+      var repEmailNode = document.querySelector("[data-rep-email]");
+      var repPhoneNode = document.querySelector("[data-rep-phone]");
+      if (repContactNode && (repEmail || repPhone)) {
+        repContactNode.style.display = "inline";
+      }
+      if (repEmailNode) repEmailNode.textContent = repEmail || "email unavailable";
+      if (repPhoneNode) repPhoneNode.textContent = repPhone || "phone unavailable";
+
+      var repProfileName = document.querySelector("[data-rep-profile-name]");
+      var repProfileTitle = document.querySelector("[data-rep-profile-title]");
+      var repProfileEmail = document.querySelector("[data-rep-profile-email]");
+      var repProfilePhone = document.querySelector("[data-rep-profile-phone]");
+      var repPhotoImg = document.querySelector("[data-rep-photo-img]");
+      var repInitialsNode = document.querySelector("[data-rep-initials]");
+      var repCalendarLinkNode = document.querySelector("[data-rep-calendar-link]");
+      var repFirstNameNode = document.querySelector("[data-rep-first-name]");
+
+      if (repProfileName) repProfileName.textContent = repName;
+      if (repProfileTitle) repProfileTitle.textContent = repTitle;
+      if (repProfileEmail) repProfileEmail.textContent = repEmail ? " • " + repEmail : "";
+      if (repProfilePhone) repProfilePhone.textContent = repPhone ? " • " + repPhone : "";
+
+      var firstName = repName.split(" ")[0] || "our team";
+      if (repFirstNameNode) repFirstNameNode.textContent = firstName;
+
+      var initials = repName
+        .split(" ")
+        .filter(Boolean)
+        .slice(0, 2)
+        .map(function (part) { return part[0].toUpperCase(); })
+        .join("");
+      if (repInitialsNode) repInitialsNode.textContent = initials || "RG";
+
+      if (repPhotoImg && repPhoto) {
+        repPhotoImg.src = repPhoto;
+        repPhotoImg.style.display = "block";
+        repPhotoImg.onerror = function () {
+          repPhotoImg.style.display = "none";
+        };
+      }
+
+      if (repCalendarLinkNode) {
+        repCalendarLinkNode.setAttribute("href", bookingLink);
+      }
+
+      function renderIcpCopy(mode) {
+        var content = ICP_CONTENT[mode] || ICP_CONTENT.storm;
+        document.querySelectorAll("[data-icp-copy]").forEach(function (node) {
+          var key = node.getAttribute("data-icp-copy");
+          if (key && content[key]) {
+            node.textContent = content[key];
+          }
+        });
+
+        document.querySelectorAll("[data-icp-button]").forEach(function (buttonNode) {
+          var buttonMode = buttonNode.getAttribute("data-icp-button");
+          buttonNode.setAttribute("aria-pressed", String(buttonMode === mode));
+        });
+
+        attribution.icp = mode;
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(attribution));
+        } catch (error) {
+          // No-op when localStorage is unavailable.
+        }
+      }
+
+      document.querySelectorAll("[data-icp-button]").forEach(function (buttonNode) {
+        buttonNode.addEventListener("click", function () {
+          var mode = buttonNode.getAttribute("data-icp-button");
+          if (!mode) return;
+          renderIcpCopy(mode);
+          document.querySelectorAll("[data-utm-field='icp']").forEach(function (fieldNode) {
+            fieldNode.value = mode;
+          });
+        });
+      });
+
+      function addTrackingParams(baseLink) {
+        try {
+          var linkUrl = new URL(baseLink, window.location.origin);
+          allowedKeys.forEach(function (key) {
+            if (attribution[key]) {
+              linkUrl.searchParams.set(key, attribution[key]);
+            }
+          });
+          return linkUrl.toString();
+        } catch (error) {
+          return baseLink;
+        }
+      }
+
+      document.querySelectorAll("[data-track-link='true']").forEach(function (linkNode) {
+        var currentHref = linkNode.getAttribute("href") || "";
+        var hrefToUse = currentHref.indexOf("calendly.com") > -1 ? bookingLink : currentHref;
+        linkNode.setAttribute("href", addTrackingParams(hrefToUse));
+
+        linkNode.addEventListener("click", function () {
+          var eventName = linkNode.getAttribute("data-track-event") || "cta_click";
+          trackEvent(eventName, {
+            cta_label: (linkNode.textContent || "").trim(),
+            cta_href: linkNode.getAttribute("href") || ""
+          });
+        });
+      });
+
+      function populateTrackingFields() {
+        document.querySelectorAll("[data-utm-field]").forEach(function (fieldNode) {
+          var key = fieldNode.getAttribute("data-utm-field");
+          if (key && attribution[key]) {
+            fieldNode.value = attribution[key];
+          }
+        });
+
+        document.querySelectorAll("[data-utm-field='landing_page_url']").forEach(function (fieldNode) {
+          fieldNode.value = window.location.href;
+        });
+
+        document.querySelectorAll("[data-utm-field='form_endpoint_used']").forEach(function (fieldNode) {
+          fieldNode.value = formEndpoint;
+        });
+      }
+
+      populateTrackingFields();
+
+      var endpointDisplay = document.querySelector("[data-form-endpoint-display]");
+      if (endpointDisplay) endpointDisplay.textContent = formEndpoint;
+
+      function showFormStatus(message, state) {
+        var statusNode = document.querySelector("[data-form-status]");
+        if (!statusNode) return;
+        statusNode.textContent = message;
+        statusNode.className = "form-status";
+        if (state === "success") statusNode.classList.add("is-success");
+        if (state === "error") statusNode.classList.add("is-error");
+      }
+
+      function submitAsJson(endpoint, payload) {
+        return fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+      }
+
+      function submitAsFormUrlencoded(endpoint, payload) {
+        var searchParams = new URLSearchParams();
+        Object.keys(payload).forEach(function (key) {
+          if (payload[key] !== null && payload[key] !== undefined) {
+            searchParams.append(key, String(payload[key]));
+          }
+        });
+
+        return fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+            "Accept": "application/json"
+          },
+          body: searchParams.toString()
+        });
+      }
+
+      var formNode = document.getElementById("demo-request-form");
+      var submitBtn = document.querySelector("[data-submit-btn='true']");
+      if (formNode && submitBtn) {
+        formNode.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          if (!formNode.reportValidity()) return;
+
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Submitting...";
+          showFormStatus("Sending your demo request...", "success");
+          trackEvent("demo_form_submit_attempt", { form_endpoint: formEndpoint });
+
+          var formData = new FormData(formNode);
+          var payload = {};
+          formData.forEach(function (value, key) {
+            payload[key] = value;
+          });
+          payload.page_title = document.title;
+          payload.page_path = window.location.pathname;
+          payload.submitted_at = new Date().toISOString();
+          payload.assigned_rep = repName;
+
+          submitAsJson(formEndpoint, payload)
+            .then(function (response) {
+              if (response.ok) return response;
+              return submitAsFormUrlencoded(formEndpoint, payload).then(function (fallbackResponse) {
+                if (!fallbackResponse.ok) {
+                  throw new Error("Form endpoint rejected submission.");
+                }
+                return fallbackResponse;
+              });
+            })
+            .then(function () {
+              showFormStatus("Success. Your demo request was submitted. A team member will contact you shortly.", "success");
+              trackEvent("demo_form_submit_success", { form_endpoint: formEndpoint });
+              formNode.reset();
+              populateTrackingFields();
+              setTimeout(function () {
+                window.open(addTrackingParams(bookingLink), "_blank", "noopener,noreferrer");
+              }, 600);
+            })
+            .catch(function () {
+              trackEvent("demo_form_submit_error", { form_endpoint: formEndpoint });
+              showFormStatus(
+                "Submission could not be completed from this browser. Opening booking page now so you can secure your demo.",
+                "error"
+              );
+              window.open(addTrackingParams(bookingLink), "_blank", "noopener,noreferrer");
+            })
+            .finally(function () {
+              submitBtn.disabled = false;
+              submitBtn.textContent = "Submit Demo Request";
+            });
+        });
+      }
+
+      var tavusShell = document.getElementById("tavus-embed-shell");
+      var tavusStatus = document.querySelector("[data-tavus-status]");
+      if (tavusShell && tavusConversationUrl) {
+        var safeTavusUrl = addTrackingParams(tavusConversationUrl);
+        var tavusIframe = document.createElement("iframe");
+        tavusIframe.src = safeTavusUrl;
+        tavusIframe.title = "RoofGenius Tavus AI conversation";
+        tavusIframe.loading = "lazy";
+        tavusIframe.allow = "camera; microphone; autoplay; clipboard-write";
+        tavusIframe.setAttribute("allowfullscreen", "true");
+        tavusIframe.addEventListener("load", function () {
+          trackEvent("tavus_embed_loaded", { tavus_url: safeTavusUrl });
+        });
+        tavusShell.innerHTML = "";
+        tavusShell.appendChild(tavusIframe);
+      } else if (tavusStatus) {
+        tavusStatus.textContent =
+          "No Tavus conversation URL detected. Add ?tavus_conversation_url=https://... to this page URL.";
+        trackEvent("tavus_embed_missing_url", {});
+      }
+
+      renderIcpCopy(selectedIcp);
+    })();
+  </script>
+</body>
+</html>
